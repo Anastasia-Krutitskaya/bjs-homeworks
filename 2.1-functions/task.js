@@ -80,7 +80,7 @@ function getAverageMark(marks) {
     return sum / marks.length;
   }
 
-console.log( getAverageScore({
+let studentsRating = {
   algebra:[2,4,5,2,3,4],
   geometry: [2,4,5],
   russian: [3,3,4,5],
@@ -90,7 +90,9 @@ console.log( getAverageScore({
   poetry: [5,3,4],
   chemistry: [2],
   french: [4,4]
-}));
+}
+
+console.log( getAverageScore(studentsRating));
 
 
 // Задача №3
