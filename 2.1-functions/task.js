@@ -49,25 +49,19 @@ function getAverageScore(data) {
   if ( (Boolean(Object.keys(data).length === 0)) ) {
       averageScore.average = 0;
     } else  {
-        averageScore = {
-           algebra: getAverageMark(data.algebra),
-           geometry: getAverageMark(data.geometry),
-           russian: getAverageMark(data.russian),
-           physics: getAverageMark(data.physics),
-           music: getAverageMark(data.music),
-           english: getAverageMark(data.english),
-           poetry: getAverageMark(data.poetry),
-           chemistry: getAverageMark(data.chemistry),
-           french: getAverageMark(data.french),
-        };
+        for (let prop in data) {
+          averageScore[prop] = getAverageMark(data[prop]);
+        }
         let marksArray = [];
         for ( let mark in averageScore) {
           marksArray.push(averageScore[mark]);
             }
           averageScore.average = getAverageMark(marksArray);
-    }
+     }
   return averageScore;
 }
+
+
 
 function getAverageMark(marks) {
     if (marks.length == 0) {
