@@ -152,14 +152,14 @@ class StudentLog {
   }
 
   addGrade(grade, subject) {   // проверить есть ли такой предмет (for), если да то добавить оценку (push), если нет то создать предмет и добавить оценку  (push)
-    for (let subj in this.marks) {
-      if (subj == subject) {
-        this.marks[subject].push(grade);
-      } else {
-        this.marks[subject] = [];
-        this.marks[subject].push(grade);
-      }
-    }
+    // for (let subj in this.marks) {
+    //   if (subj == subject) {
+    //     this.marks[subject].push(grade);
+    //   } else {
+    //     this.marks[subject] = [];
+    //     this.marks[subject].push(grade);
+    //   }
+    // }
     console.log(this.marks);
     return this.marks[subject].length
   }
