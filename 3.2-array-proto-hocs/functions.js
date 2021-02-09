@@ -1,5 +1,5 @@
 // Задача № 1 ---------------------------------------------
-// 'use strict';
+'use strict';
 console.clear();
 const weapons = [new Knife(), new Staff(), new Axe(), new StormStaff(), new LongBow(), new Bow()];
 
@@ -46,19 +46,28 @@ function sum(...args) {
   }, 0);
 }
 
-const compareArrays = (arr1, arr2) => arr1.length === arr2.length && arr1.every((n, i) => n === arr2[i]); // ругается на arr1.every (arr1.every is not a function)
-console.log(compareArrays([6], [6]))
+function compareArrays(arr1, arr2) {
+  const a = Array.from(arr1),
+        b = Array.from(arr2);
+  if (a.length === b.length) {
+    return a.every( function(n,i) {
+      return n === b[i]
+      } )
+    } else {
+      return false
+  } 
+}
 
-compareArrays([8, 9], [6]); // false, разные значения
-compareArrays([8, 9, 5, 4], [8, 9, 5, 4, 8, 3, 5]); // false, разные значения
-compareArrays([9, 2, 4, 8, 2], [9, 2, 4]); // false, разные значения
-compareArrays([1, 2, 3], [2, 3, 1]); // false, разные индексы, хотя и одинаковые значения
-compareArrays([8, 1, 2], [8, 1, 2]); // true
+console.log(compareArrays([8, 9], [6])); // false, разные значения
+console.log(compareArrays([8, 9, 5, 4], [8, 9, 5, 4, 8, 3, 5])); // false, разные значения
+console.log(compareArrays([9, 2, 4, 8, 2], [9, 2, 4]));  // false, разные значения
+console.log(compareArrays([1, 2, 3], [2, 3, 1])); // false, разные индексы, хотя и одинаковые значения
+console.log(compareArrays([8, 1, 2], [8, 1, 2])); // true
 
 function memorize(fn, limit) {
   const memory = [];
   const resultObject = {
-    args: Array.from(arguments)[0].arguments, // как передать сюда аргументы функции fn? 
+    args: Array.from(arguments), // как передать сюда аргументы функции fn?  //Array.from(arguments)[0].arguments - не работает, а arguments это аргументы самой функции, 
     result: fn()
     }
   console.log(resultObject);
