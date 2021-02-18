@@ -23,9 +23,12 @@ class AlarmClock {
     }
     
     removeClock(id) {
-        const result = this.alarmCollection.filter(alarm => alarm.id === id);
-        const position = this.alarmCollection.indexOf(result);
-        if (result) {
+        const position = this.alarmCollection.findIndex(element => {
+            if (element.id === id) {
+               return true
+            }
+         });
+        if ( position > -1 ) {
             this.alarmCollection.splice(position,1);
             return true
         } else {
@@ -35,12 +38,20 @@ class AlarmClock {
 
     getCurrentFormattedTime() {
         const date = new Date;
-        return date.getHours() + ':' + date.getMinutes();
+        let h = date.getHours();
+        let m = date.getMinutes();
+        if (h < 10) {
+            h = `0${h}`
+        }
+        if (m < 10) {
+            m = `0${m}`
+        }
+        return `${h}:${m}`;
     }
 
     checkClock(alarm) {
         if (alarm.time === this.getCurrentFormattedTime()) {
-            return collback()
+            alarm.callback()
         }
     }
 
@@ -49,7 +60,7 @@ class AlarmClock {
             this.alarmCollection.forEach(alarm => this.checkClock(alarm));
         };
         if (!this.timerId) {
-            this.timerId = setInterval(func(),1000);
+            this.timerId = setInterval(func,1000);
         }
     }
 
